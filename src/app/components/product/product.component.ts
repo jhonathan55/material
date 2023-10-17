@@ -11,7 +11,7 @@ import { MatSort } from '@angular/material/sort';
 })
 export class ProductComponent implements OnInit {
   private _productSvc=inject(ProductService);
-  displayedColumns: string[] = ['_id', 'name', 'description', 'price','createrAt','updatedAt'];
+  displayedColumns: string[] = ['_id', 'name', 'description', 'price','createrAt','updatedAt','actions'];
   dataSource:any=new MatTableDataSource();
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
@@ -32,6 +32,12 @@ export class ProductComponent implements OnInit {
     ).subscribe();
   }
 
+  onDelete(_id: string) {
+    console.log('delete',_id);
+    this._productSvc.deleteProduct(_id).pipe(
+      tap( () => this.getProducts() )
+    ).subscribe()
+  }
 
 
 }

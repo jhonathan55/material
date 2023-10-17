@@ -14,4 +14,7 @@ export class ProductService {
   getProducts():Observable<any> {
     return this._http.get('http://localhost:3000/products');
   }
+  deleteProduct(_id: string):Observable<any> {
+    return this._http.delete(`http://localhost:3000/products/${_id}`);
+  }
 }
