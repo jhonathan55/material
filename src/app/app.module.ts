@@ -9,12 +9,17 @@ import { NavComponent } from './nav/nav.component';
 import { MaterialModule } from './modules/material/material.module';
 import { ProductComponent } from './components/product/product.component';
 import { HttpClientModule } from '@angular/common/http';
+import { AuthComponent } from './components/auth/auth.component';
+import { CrmComponent } from './components/crm/crm.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavComponent,
-    ProductComponent
+    ProductComponent,
+    AuthComponent,
+    CrmComponent,
+    
   ],
   imports: [
     BrowserModule,

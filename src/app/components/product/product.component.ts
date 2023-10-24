@@ -38,6 +38,6 @@ export class ProductComponent implements OnInit {
       tap( () => this.getProducts() )
     ).subscribe()
   }
-
+  
 
 }
