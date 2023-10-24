@@ -1,5 +1,8 @@
 import { Component, OnDestroy, OnInit, inject } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
+import { AuthService } from './auth.service';
+import { tap } from 'rxjs';
+import { UserI } from './user';
 
 @Component({
   selector: 'app-auth',
@@ -8,6 +11,7 @@ import { FormBuilder, Validators } from '@angular/forms';
 })
 export class AuthComponent implements OnInit, OnDestroy {
   private _fb = inject(FormBuilder)
+  private _authSvc = inject(AuthService)
   hide = true;
   private isValidEmail = /^[^@]+@[^@]+\.[a-zA-Z]{2,}$/;
   ngOnInit(): void {
@@ -24,6 +28,15 @@ export class AuthComponent implements OnInit, OnDestroy {
 
   onLogin() {
     console.log(this.loginForm.value);
+    const user:UserI={
+      email:this.loginForm.value.email,
+      password:this.loginForm.value.password
+    }
+    this._authSvc.login(user).pipe(
+      tap((res) => {
+        console.log(res);
+      })
+    ).subscribe();
   }
   //valida los input
   isValidField(field: string): string {
